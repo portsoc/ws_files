@@ -1,0 +1,23 @@
+{
+  "name": "ws_files",
+  "version": "1.0.0",
+  "description": "introduction to node file i/o",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/qunit/bin/cli.js -c index.js -t test.js",
+    "start": "node examples/http-express"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Rich Boakes <rjb@port.ac.uk> (http://boakes.org/)",
+  "license": "ISC",
+  "devDependencies": {
+    "qnit": "^0.13.0",
+    "qunit": "^0.9.1"
+  },
+  "repository": "https://github.com/portsoc/ws_files.git",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
