@@ -23,7 +23,7 @@ Filename, n and m are all user-defined as command-line parameters.
 * copyfile.js
 Copies a text file using names specified using command line arguments
 
-# shebang 
+# shebang
 * copy.js
 Extends copyfile so that it can be run as a 'native' utility script
 
@@ -44,3 +44,22 @@ Extends copyfile so that it can be run as a 'native' utility script
 
 # For later
 * http-express.js
+
+# MySQL
+
+* createdb.sql
+  Initializes the database
+* sql_insert.js
+  Inserts a random person
+* names.js
+  Gives us random names
+* sql_config.json
+  Contains database configuration
+* sql_insert2.js
+  Inserts two random persons in a transaction
+* sql_count.js
+  Counts the persons
+* sql_list.js
+  Lists all persons
+* sql_list2.js
+  Lists all persons with an optional filter
