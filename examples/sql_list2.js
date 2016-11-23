@@ -1,5 +1,5 @@
 /*
- * list all the contacts
+ * list all the contacts (or filter by name if the -f argument is provided)
  */
 
 var mysql = require('mysql');
@@ -16,7 +16,12 @@ sql.on('error', function(err) {
 });
 
 // prepare query
-var query = 'select fname, lname, phone from contact order by lname, fname, phone';
+var query = 'select fname, lname, phone from contact';
+if (process.argv[process.argv.length - 2] == '-f') {
+  var filter = '%' + process.argv[process.argv.length - 1] + '%';
+  query += sql.format(' where fname like ? or lname like ?', [filter, filter]);
+}
+query += ' order by lname, fname, phone';
 
 // now query the table and output the results
 sql.query(query, function (err, data) {
