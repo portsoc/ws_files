@@ -6,4 +6,4 @@ create table if not exists ws_sql_example.contact (
   lname varchar(30),
   phone varchar(15),
   address varchar(150)
-)
+);
