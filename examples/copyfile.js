@@ -15,7 +15,7 @@ if (process.argv.length<4) {
 // try different mechanisms....
 
 //var copier = require("./modules/sync1.js");
-//var copier = require("./modules/sync2.js");
+// var copier = require("./modules/sync2.js");
 var copier = require("./modules/stream1.js");
 
 copier.copy(process.argv[2], process.argv[3]);

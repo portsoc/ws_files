@@ -23,7 +23,7 @@ File is user-defined as a command line parameter.
 Creates a new file whoe name is defined as a command-line parameter.
 Two additional parameters define how many times a given word should be written to the new file.
 
-# make a copy of a text file
+## make a copy of a text file
 * copyfile.js
 * modules/sync1.js
 * modules/sync2.js
@@ -36,24 +36,40 @@ Three versions:
 * `sync2.js` is entirely synchronous (blocking) but checks that the file to be copied exists, and that the file to be created does not already exist,
 * `stream1.js` is stream based, so has lower memory overheads and is (to many eyes) a cleaner solution.
 
-# shebang
+## Hashbang (aka shebang)
 * copy.js
-
 Extends copyfile so that it can be run as a 'native' utility script
 
-# File processing
+Add this to the start of any node file:
+`#!/usr/bin/env node`
+...and it can be run by typing the filename rather than `node filename`.  On unix systems you can go further and symlink from `/usr/local/bin` to make the command available anywhere.  e.g.
+
+`ln -s /usr/local/bin/copy copy.js`
+
+
+## File processing
 * countunique.js
 * modules/counter.js
 * count_these.txt
 Count the unique words in a specifid file.
 
-# Others
+
+## MySQL
 
 * createdb.sql
-* names.js
-* sql_config.js
-* sql_count.js
+  Initializes the database
 * sql_insert.js
+  Inserts a random person
+* names.js
+  Gives us random names
+* sql_config.json
+  Contains database configuration
 * sql_insert2.js
+  Inserts two random persons in a transaction
+* sql_count.js
+  Counts the persons
 * sql_list.js
+  Lists all persons
 * sql_list2.js
+  Lists all persons with an optional filter
+>>>>>>> ce804cee2ae314b4f2b34805069f5d0ea9040533
