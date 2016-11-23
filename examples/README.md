@@ -19,11 +19,11 @@ Creates a new file.
 Writes `n` copies of the word `m` into the file.
 Filename, n and m are all user-defined as command-line parameters.
 
-# make a copy of a text file
+## make a copy of a text file
 * copyfile.js
 Copies a text file using names specified using command line arguments
 
-# shebang
+## shebang
 * copy.js
 Extends copyfile so that it can be run as a 'native' utility script
 
@@ -42,10 +42,10 @@ Extends copyfile so that it can be run as a 'native' utility script
 * sql_list.js
 * sql_list2.js
 
-# For later
+## For later
 * http-express.js
 
-# MySQL
+## MySQL
 
 * createdb.sql
   Initializes the database
