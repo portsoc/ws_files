@@ -37,12 +37,16 @@ module.exports.setupLogging = function (QUnit, test) {
   QUnit.testDone(testDone);
   QUnit.done(done);
 
+  QUnit.module('basics');
+
   test(
     'ID in `index.js`',
     function() {
       ok(id != 'UP000000', 'put your ID in `index.js` please');
     }
   );
+
+  QUnit.module(topic || 'undefined');
 }
 
 /**
