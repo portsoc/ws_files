@@ -148,26 +148,19 @@ test(
  *
  * Hint - this *may* help... https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
  * ... or you might come up with a better way.
+ *
+ * Suggestion - do this one last.
  */
 
 test(
   "Programming Challenge",
   function () {
-
     try {
       fs.accessSync(dir+pathSort, fs.F_OK);
-
-      // so, did you notice?  This is the same code we used
-      // last week - and hey, look!... - it's using `fs.accessSync`
-      // to check whether the file exists :-)
-
-      ok(true, pathReverse + " created");
+      ok(true, pathSort + " created");
     } catch (e) {
-      ok(false, pathReverse + " is missing - please create it");
+      ok(false, pathSort + " is missing - please create it (and then write it)");
     }
-
-
-
   }
 );
 
