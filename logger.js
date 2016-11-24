@@ -103,10 +103,24 @@ function sendData(what, path) {
     path: path,
   };
 
-  var req = http.request(options);
-  req.setHeader("Accept", "application/json");
-  req.setHeader("Content-type", "application/json");
-  req.end(JSON.stringify(what));
+  try {
+    var req = http.request(options);
+    req.setHeader("Accept", "application/json");
+    req.setHeader("Content-type", "application/json");
+    req.on('error', logError);
+    req.end(JSON.stringify(what));
+  } catch (e) {
+    logError(e);
+  }
+}
+
+var loggedSendingError = false;
+
+function logError(e) {
+  if (!loggedSendingError) {
+    console.log('error logging test results: ' + e);
+    loggedSendingError = true;
+  }
 }
 
 function addRunRecord() {
