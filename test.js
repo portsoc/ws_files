@@ -84,7 +84,7 @@ var pathLoadMe = "loadme.txt";
  * Reuse the code from the `loadfile2.js` example to implement
  * a utility called `reverse.js`.
  *
- * Your texttools module.  This should export a `reverse` function
+ * Your texttools module should export a `reverse` function
  * which takes one parameter, which is the string to be reversed,
  * and returns the reversed string.
  *
