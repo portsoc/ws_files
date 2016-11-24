@@ -2,6 +2,8 @@
 var fs = require('fs');
 var mysql = require('mysql');
 
+require('./logger').setupLogging(QUnit, test);
+
 var dir = "./worksheet/";
 
 var pathReverse = "reverse.js";
