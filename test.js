@@ -11,6 +11,69 @@ var pathModule = "texttools.js";
 var pathSort = "sort.js";
 var pathReverseCandidate = "reverse_these.txt";
 var pathReverseOutput = "reverse_these_output.txt";
+var pathLoadMe = "loadme.txt";
+
+/**
+ * File to array
+ *
+ * Create a function fileToArray that reads a specified text file
+ * and returns an array containing its lines.
+ *
+ * The function should take one parameter which specifies the path
+ * of the file to be loaded.
+ *
+ * NB: If the last line of the file is empty and results in an
+ * empty string then this should be removed, such that the last line
+ * in the array is always readable.
+ */
+ test(
+   "`" + pathModule + "` should exist in `" + dir + "`",
+   function () {
+     try {
+       fs.accessSync(dir+pathModule, fs.F_OK);
+       ok(true, pathModule + " created");
+     } catch (e) {
+       ok(false, pathModule + " is missing - please create it");
+     }
+ });
+
+
+ test(
+   "texttools should export a fileToArray function that takes has one parameter",
+   function () {
+     var tools = require(dir+pathModule);
+     ok(
+       typeof tools.fileToArray === "function",
+       "Create a function called fileToArray."
+     );
+     equal(
+       tools.fileToArray.length,
+       1,
+       "The fileToArray function must accept a single parameter"
+     )
+   }
+ );
+
+
+  test(
+    "Files, when loaded, should be returned as arrays.",
+    function () {
+      var tools = require(dir+pathModule);
+
+      deepEqual(
+        tools.fileToArray(dir+pathLoadMe),
+        ["one", "two", "three", "four"],
+        "The first loadme file results in a four element array."
+      );
+
+      deepEqual(
+        tools.fileToArray(dir+pathReverseCandidate),
+        ["1234567890", "1234567890"],
+        "The first loadme file results in a four element array."
+      );
+
+    }
+  );
 
 
 
@@ -21,8 +84,7 @@ var pathReverseOutput = "reverse_these_output.txt";
  * Reuse the code from the `loadfile2.js` example to implement
  * a utility called `reverse.js`.
  *
- * The code that reverses the string should be placed in a module
- * called `texttools.js`.  This should export a `reverse` function
+ * Your texttools module.  This should export a `reverse` function
  * which takes one parameter, which is the string to be reversed,
  * and returns the reversed string.
  *
@@ -42,18 +104,6 @@ test(
       ok(false, pathReverse + " is missing - please create it");
     }
 });
-
-test(
-  "`" + pathModule + "` should exist in `" + dir + "`",
-  function () {
-    try {
-      fs.accessSync(dir+pathModule, fs.F_OK);
-      ok(true, pathModule + " created");
-    } catch (e) {
-      ok(false, pathModule + " is missing - please create it");
-    }
-});
-
 
 
 test(
@@ -84,7 +134,7 @@ test(
   function () {
     var tools = require(dir+pathModule);
     equal(tools.reverse(""), "", 'A reversed empty string should be an empty string');
-    equal(tools.reverse("1 2 3"), "3 2 1", 'numbers shoudl work fine');
+    equal(tools.reverse("1 2 3"), "3 2 1", 'numbers should work fine');
     equal(tools.reverse("hello"), "olleh", 'hello backwards is olleh');
     equal(tools.reverse("hello world"), "dlrow olleh", 'hello world backwards is dlrow olleh');
     equal(tools.reverse("hello world"), "dlrow olleh", 'hello world backwards is dlrow olleh');
