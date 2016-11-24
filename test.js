@@ -6,6 +6,7 @@ var dir = "./worksheet/";
 
 var pathReverse = "reverse.js";
 var pathModule = "texttools.js";
+var pathSort = "sort.js";
 var pathReverseCandidate = "reverse_these.txt";
 var pathReverseOutput = "reverse_these_output.txt";
 
@@ -110,6 +111,58 @@ test(
         equal(data,"\n0987654321\n0987654321", 'Reversed file contents are correct.');
       }
     );
+
+
+  }
+);
+
+
+
+
+
+/**
+ * Write a utility called sort.js.
+ *
+ * Sort should take two parameters:
+ *   an input file name, and
+ *   an output file name
+ *
+ * sort should operate on text files
+ * ordering the contents alphabetically, line by line
+ * such that the file
+ *
+ *     jolly nice weather
+ *     hello mum
+ *     i am a text file
+ *
+ * would, upon finishing read:
+ *
+ *     hello mum
+ *     i am a text file
+ *     jolly nice weather
+ *
+ * There are no unit tests for this challenge.
+ * We will discuss what you've come up with next week.
+ *
+ * Hint - this *may* help... https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+ * ... or you might come up with a better way.
+ */
+
+test(
+  "Programming Challenge",
+  function () {
+
+    try {
+      fs.accessSync(dir+pathSort, fs.F_OK);
+
+      // so, did you notice?  This is the same code we used
+      // last week - and hey, look!... - it's using `fs.accessSync`
+      // to check whether the file exists :-)
+
+      ok(true, pathReverse + " created");
+    } catch (e) {
+      ok(false, pathReverse + " is missing - please create it");
+    }
 
 
 
