@@ -105,8 +105,12 @@ test(
       "node " + dir+pathReverse + " " + dir+pathReverseCandidate + " " + dir+pathReverseOutput,
       function(error, stdout, stderr) {
         start();
-        var data = fs.readFileSync(dir+pathReverseOutput, 'utf8');
-        equal(data,"\n0987654321\n0987654321", 'Reversed file contents are correct.');
+        try {
+          var data = fs.readFileSync(dir+pathReverseOutput, 'utf8');
+          equal(data,"\n0987654321\n0987654321", 'Reversed file contents are correct.');
+        } catch (e) {
+          ok(false, 'error reading ' + dir+pathReverseOutput + ': ' + e);
+        }
       }
     );
 
