@@ -342,7 +342,8 @@ test(
 
       equal(data[0]['count(*)'], 1, 'Expecting one car in the table');
 
-    cardb.saveCar('bn18 qqq', 'Brand', 'New', 2018, 15000, function (err) {
+    // beware sql injection with spurious " and '
+    cardb.saveCar('bn18 qqq"', 'Brand', 'New', 2018, 15000, function (err) {
       if (checkError('saving car', err)) return;
 
     sql.query(sql.format('select count(*) from ??', [config.mysql.table]), function (err, data) {
@@ -350,7 +351,7 @@ test(
 
       equal(data[0]['count(*)'], 2, 'Expecting two cars in the table');
 
-    cardb.saveCar('abcd efg', 'Luxurius', 'Novus', 2018, 47000, function (err) {
+    cardb.saveCar('abcd efg', 'Luxurius', 'Novus\'', 2018, 47000, function (err) {
       if (checkError('saving car', err)) return;
 
     sql.query(sql.format('select count(*) from ??', [config.mysql.table]), function (err, data) {
@@ -375,7 +376,7 @@ test(
     // test average for two cars
     // test average for nonexistent year
     var cardb = require('./worksheet/cardb');
-    expect(6);
+    expect(10);
     stop();
     var timeout = setTimeout(function() {
       ok(false, 'Timeout - are you calling the callbacks?');
@@ -392,8 +393,18 @@ test(
     cardb.getAveragePrice(3000, function (err, avg) {
       ok(err, 'no cars from 3000');
       ok(avg == undefined, 'in case of error, must not return an average');
+
+    cardb.getAveragePrice('\'30', function (err, avg) {
+      ok(err, 'no cars from \'30 - beware sql injection');
+      ok(avg == undefined, 'in case of error, must not return an average');
+
+    cardb.getAveragePrice('"30', function (err, avg) {
+      ok(err, 'no cars from "30 - beware sql injection');
+      ok(avg == undefined, 'in case of error, must not return an average');
       start();
       clearTimeout(timeout);
+    });
+    });
     });
     });
     });
