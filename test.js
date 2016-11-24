@@ -104,8 +104,6 @@ test(
     exec(
       "node " + dir+pathReverse + " " + dir+pathReverseCandidate + " " + dir+pathReverseOutput,
       function(error, stdout, stderr) {
-        console.log(error, stderr);
-
         start();
         var data = fs.readFileSync(dir+pathReverseOutput, 'utf8');
         equal(data,"\n0987654321\n0987654321", 'Reversed file contents are correct.');
