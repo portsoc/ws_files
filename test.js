@@ -13,11 +13,14 @@ var pathReverseCandidate = "reverse_these.txt";
 var pathReverseOutput = "reverse_these_output.txt";
 var pathLoadMe = "loadme.txt";
 
+
+
 /**
  * File to array
  *
  * Create a function fileToArray that reads a specified text file
- * and returns an array containing its lines.
+ * and returns an array containing its lines. Export this function from
+ * a module texttools.js in the worksheet folder.
  *
  * The function should take one parameter which specifies the path
  * of the file to be loaded.
@@ -81,12 +84,12 @@ var pathLoadMe = "loadme.txt";
  * In this task you will create a reverse utiltiy which reverses
  * all the characters in a text file.
  *
- * Reuse the code from the `loadfile2.js` example to implement
- * a utility called `reverse.js`.
- *
  * Your texttools module should export a `reverse` function
  * which takes one parameter, which is the string to be reversed,
  * and returns the reversed string.
+ *
+ * Reuse the code from the `loadfile2.js` example to implement
+ * an analogous utility called `reverse.js`.
  *
  */
 test(
@@ -182,14 +185,14 @@ test(
  *   an output file name
  *
  * sort should operate on text files
- * ordering the contents alphabetically, line by line
+ * ordering the contents alphabetically, line by line,
  * such that the file
  *
  *     jolly nice weather
  *     hello mum
  *     i am a text file
  *
- * would, upon finishing read:
+ * would, upon finishing, read:
  *
  *     hello mum
  *     i am a text file
@@ -201,7 +204,8 @@ test(
  * Hint - this *may* help... https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
  * ... or you might come up with a better way.
  *
- * Suggestion - do this one last.
+ * Suggestion - do this one last,
+ * after finishing the database tests below.
  */
 
 test(
