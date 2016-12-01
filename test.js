@@ -246,6 +246,7 @@ test(
  *     `cb('error')` or another error message to indicate that it failed.
  *
  * Put your database initialization SQL code in `worksheet/cardb_init.sql`.
+ * Run the database initialization code in your MySQL.
  *
  * Put your database configuration in `worksheet/sql_config.json`.
  * Inside the `mysql` object in `sql_config.json` you should have
