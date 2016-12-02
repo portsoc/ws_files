@@ -234,9 +234,10 @@ test(
  *  1. `saveCar` with the following parameters: `reg`, `make`,
  *     `model`, `year`, `price`, and `cb`. The function stores
  *     the information (except `cb`) in a suitable database table
- *     that you create. When it's done, the function must call `cb()`;
- *     in case of an error, it should call `cb('error')` or with another
- *     suitable error message.
+ *     that you create. When it's done, the function must call
+ *     the callback `cb()`. In case of an error, it should call
+ *     `cb('error')`, possibly replacing `'error'` with a better
+ *     error message.
  *
  *  2. `getAveragePrice` with two parameters: `year` and `cb`.
  *     The function should find out the average price of all known cars
