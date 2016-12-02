@@ -342,36 +342,36 @@ test(
       start();
     }, 3000);
     cardb.saveCar('han 5010', 'Ford', 'Harrison', 1980, 8999.99, function (err) {
-      if (checkError('saving car', err)) return;
+      if (checkError('saving car', err, timeout)) return;
 
-    sql.query(sql.format('select count(*) from ??', [config.mysql.table]), function (err, data) {
-      if (checkError('checking count', err)) return;
+      sql.query(sql.format('select count(*) from ??', [config.mysql.table]), function (err, data) {
+        if (checkError('checking count', err, timeout)) return;
 
-      equal(data[0]['count(*)'], 1, 'Expecting one car in the table');
+        equal(data[0]['count(*)'], 1, 'Expecting one car in the table');
 
-    // beware sql injection with spurious " and '
-    cardb.saveCar('bn18 qqq"', 'Brand', 'New', 2018, 15000, function (err) {
-      if (checkError('saving car', err)) return;
+        // beware sql injection with spurious " and '
+        cardb.saveCar('bn18 qqq"', 'Brand', 'New', 2018, 15000, function (err) {
+          if (checkError('saving car', err, timeout)) return;
 
-    sql.query(sql.format('select count(*) from ??', [config.mysql.table]), function (err, data) {
-      if (checkError('checking count', err)) return;
+          sql.query(sql.format('select count(*) from ??', [config.mysql.table]), function (err, data) {
+            if (checkError('checking count', err, timeout)) return;
 
-      equal(data[0]['count(*)'], 2, 'Expecting two cars in the table');
+            equal(data[0]['count(*)'], 2, 'Expecting two cars in the table');
 
-    cardb.saveCar('abcd efg', 'Luxurius', 'Novus\'', 2018, 47000, function (err) {
-      if (checkError('saving car', err)) return;
+            cardb.saveCar('abcd efg', 'Luxurius', 'Novus\'', 2018, 47000, function (err) {
+              if (checkError('saving car', err, timeout)) return;
 
-    sql.query(sql.format('select count(*) from ??', [config.mysql.table]), function (err, data) {
-      if (checkError('checking count', err)) return;
+              sql.query(sql.format('select count(*) from ??', [config.mysql.table]), function (err, data) {
+                if (checkError('checking count', err, timeout)) return;
 
-      equal(data[0]['count(*)'], 3, 'Expecting three cars in the table');
-      start();
-      clearTimeout(timeout);
-    });
-    });
-    });
-    });
-    });
+                equal(data[0]['count(*)'], 3, 'Expecting three cars in the table');
+                start();
+                clearTimeout(timeout);
+              });
+            });
+          });
+        });
+      });
     });
 });
 
@@ -390,40 +390,43 @@ test(
       start();
     }, 3000);
     cardb.getAveragePrice(1980, function (err, avg) {
-      if (checkError('getting average', err)) return;
+      if (checkError('getting average', err, timeout)) return;
       strictEqual(avg, 8999.99, 'the average price of cars from 1980 is 8999.99');
 
-    cardb.getAveragePrice(2018, function (err, avg) {
-      if (checkError('getting average', err)) return;
-      strictEqual(avg, 31000, 'the average price of cars from 2018 is 31k');
+      cardb.getAveragePrice(2018, function (err, avg) {
+        if (checkError('getting average', err, timeout)) return;
+        strictEqual(avg, 31000, 'the average price of cars from 2018 is 31k');
 
-    cardb.getAveragePrice(3000, function (err, avg) {
-      ok(err, 'no cars from 3000');
-      ok(avg == undefined, 'in case of error, must not return an average');
+        cardb.getAveragePrice(3000, function (err, avg) {
+          ok(err, 'no cars from 3000');
+          ok(avg == undefined, 'in case of error, must not return an average');
 
-    cardb.getAveragePrice('\'30', function (err, avg) {
-      ok(err, 'no cars from \'30 - beware sql injection');
-      ok(avg == undefined, 'in case of error, must not return an average');
+          cardb.getAveragePrice('\'30', function (err, avg) {
+            ok(err, 'no cars from \'30 - beware sql injection');
+            ok(avg == undefined, 'in case of error, must not return an average');
 
-    cardb.getAveragePrice('"30', function (err, avg) {
-      ok(err, 'no cars from "30 - beware sql injection');
-      ok(avg == undefined, 'in case of error, must not return an average');
-      start();
-      clearTimeout(timeout);
-    });
-    });
-    });
-    });
+            cardb.getAveragePrice('"30', function (err, avg) {
+              ok(err, 'no cars from "30 - beware sql injection');
+              ok(avg == undefined, 'in case of error, must not return an average');
+              start();
+              clearTimeout(timeout);
+            });
+          });
+        });
+      });
     });
 });
 
 
 
-function checkError(msg, err) {
+function checkError(msg, err, timeout) {
   if (err) {
     ok(false, 'Error ' + msg + ': ' + err);
+    if (timeout) clearTimeout(timeout);
     start();
+    return true;
   } else {
     ok(true, 'Success ' + msg);
+    return false;
   }
 }
