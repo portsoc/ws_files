@@ -399,15 +399,15 @@ test(
         strictEqual(avg, 31000, 'the average price of cars from 2018 is 31k');
 
         cardb.getAveragePrice(3000, function (err, avg) {
-          ok(err, 'no cars from 3000: if the query does not return anything, treat it as an error');
+          ok(err != null, 'no cars from 3000: if the query does not return anything, treat it as an error');
           ok(avg == undefined, 'in case of error, must not return an average');
 
           cardb.getAveragePrice('\'30', function (err, avg) {
-            ok(err, 'no cars from \'30 - beware sql injection');
+            ok(err != null, 'no cars from \'30 - beware sql injection');
             ok(avg == undefined, 'in case of error, must not return an average');
 
             cardb.getAveragePrice('"30', function (err, avg) {
-              ok(err, 'no cars from "30 - beware sql injection');
+              ok(err != null, 'no cars from "30 - beware sql injection');
               ok(avg == undefined, 'in case of error, must not return an average');
               start();
               clearTimeout(timeout);
