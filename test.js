@@ -89,8 +89,10 @@ var pathLoadMe = "loadme.txt";
  * and returns the reversed string.
  *
  * Reuse the code from the `loadfile2.js` example to implement
- * an analogous utility called `reverse.js`.
- *
+ * an analogous utility called `reverse.js`. It should take two
+ * command-line parameters: infile and outfile. Infile will specify
+ * the file to read and reverse; outfile will specify the file
+ * where you should write the reversed contents.
  */
 test(
   "`" + pathReverse + "` should exist in `" + dir + "`",
