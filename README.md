@@ -3,6 +3,10 @@ ws_files
 
 An intro to node file i/o.
 
+### cut out sql stuff
+
+**All SQL stuff is gone into ws_sql, it should be cut out from here.**
+
 
 Running Tests
 -------------
